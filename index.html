@@ -28,9 +28,15 @@
             padding: 20px;
         }
 
+        header .logo {
+            width: 50vw;
+            max-width: 200px;
+        }
+
         .icons {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
         }
         .icons a {
             color: black;
@@ -51,7 +57,7 @@
         }
 
         h1 {
-            font-size: 5rem;
+            font-size: min(14vw, 5rem);
             margin: 2rem;
         }
 
@@ -60,19 +66,32 @@
             font-family: 'Caveat', cursive;
         }
 
-        .columns {
-            display:flex;
-            max-width: 1200px;
-            margin: 20px auto;
-            justify-content: center;
+        .main-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr min-content;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 1024px;
         }
 
-        .columns .col1 {
-            width: 500px;
-            margin-right: 20px;
+        .sidebar {
+            order: 2;
+            width: 380px;
         }
 
-        .container {
+        @media (max-width: 1030px) {
+            .sidebar {
+                order: 0;
+                width: 100%;
+            }
+
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -86,6 +105,31 @@
 
         .event-details {
             margin-top: 20px;
+            max-width: 340px;
+            margin: 0 auto;
+        }
+
+        h3 {
+
+        }
+
+        @media (min-width: 720px) {
+            .event-details {
+                max-width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+            .event-details>.thumbnail {
+                order: 1;
+                align-self: center;
+                justify-self: right;
+            }
+        }
+
+        @media (min-width: 1031px) {
+            .event-details {
+                display: block;
+            }
         }
 
         .event-details h2 {
@@ -95,11 +139,16 @@
         .event-details p {
             font-size: 16px;
         }
+
+        .event-details img.thumbnail {
+            max-width: 340px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     <header>
-        <img alt="logo" src="assets/Logo-transparent.png" width="200px" />
+        <img class="logo" alt="logo" src="assets/Logo-transparent.png" />
         <h1 class="logo-font">Bitcoinology</h1>
         <p>Welcoming you to a Bitcoin focused community in London.</p>
         <p class="small">Located at: 
@@ -115,18 +164,34 @@
                 src="/assets/geyser.icon.png" />
             </a>
             <a target="_blank" href="https://twitter.com/bitcoinology271"><i class="fa-brands fa-twitter"></i></a>
-            <a target="_blank" href="https://www.youtube.com/bitcoinology"><i class="fa-brands fa-youtube"></i></a>
+            <a target="_blank" href="https://youtube.com/@Bitcoinology"><i class="fa-brands fa-youtube"></i></a>
             <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=51.52109%2C%20-0.117499"><i class="fa fa-map-marker"></i></a>
         </p>
     </header>
 
-    <div class="columns">
-        <div class="col1">
-            <div class="container">
+
+    <div class="main-grid">
+        <div class="sidebar">
+            <div class="panel">
+                <div class="event-details">
+                    <img class="thumbnail"
+                        alt="thumbnail"  
+                        src="https://secure.meetupstatic.com/photos/event/8/7/a/d/600_518794733.webp?w=384">
+                    <div>
+                        <h3>Our next event:</h2>
+                        <a href="https://www.meetup.com/bitcoinology/events/298862578/"><h2>Exploring BitVM by Antoine Riard</h3></a>
+                        <p><strong>Date:</strong> 7th February 2024</p>
+                        <p><strong>Time:</strong> 6:30 PM - 8:30 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="panel">
                 <h2>About the Meetup</h2>
                 <p>Bitcoinology is a monthly event dedicated to exploring the many aspects of Bitcoin. Our mission is to educate, inform, and connect enthusiasts and newcomers alike. </p>
             </div>
-            <div class="container">
+            <div class="panel">
                 <h2>Support us:</h2>
                 <p>
                     Hosting in London is not cheap. The meetup is free, but if you find it useful or appreciate our 
@@ -138,24 +203,6 @@
                 </p>
             </div>
         </div>
-        <div class="col2">
-            <div class="container">
-                <div class="event-details">
-                    <a href="" style="display: inline-block;">
-                        <img 
-                            alt="thumbnail" 
-                            width="340" 
-                            src="https://secure.meetupstatic.com/photos/event/8/7/a/d/600_518794733.webp?w=384">
-                    </a>
-                    <h3>Our next event:</h2>
-                    <a href="https://www.meetup.com/bitcoinology/events/298862578/"><h2>Exploring BitVM by Antoine Riard</h3></a>
-                    <p><strong>Date:</strong> 7th February 2024</p>
-                    <p><strong>Time:</strong> 6:30 PM - 8:30 PM</p>
-                </div>
-            </div>
-        
-        </div>
     </div>
-
 </body>
 </html>
